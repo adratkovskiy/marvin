@@ -35,7 +35,7 @@ public slots:
     void onRemoveUser(trillianBody *client);
 
 protected:
-    void incomingConnection(qintptr handle);
+    void incomingConnection(int handle);
 
 private:
     QList<trillianBody *> _clients; //список пользователей

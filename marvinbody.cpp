@@ -126,7 +126,7 @@ bool marvinBody::isNameUsed(QString name) const
     return false;
 }
 
-void marvinBody::incomingConnection(qintptr handle)
+void marvinBody::incomingConnection(int handle)
 {
     trillianBody *client = new trillianBody(handle, this, this);
     connect(client, SIGNAL(addUserToGui(QString)), _widget, SLOT(onAddUserToGui(QString)));

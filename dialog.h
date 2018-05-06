@@ -6,11 +6,13 @@
 #include <QtGui>
 #include <QtCore>
 #include "marvinbody.h"
+#include "eye.h"
 
 namespace Ui {
     class Dialog;
 }
 
+class eye;
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -23,6 +25,7 @@ public:
 private:
     Ui::Dialog *ui;
     marvinBody *_serv;
+    eye *marvinEye;
     void addToLog(QString text, QColor color);
 
 signals:

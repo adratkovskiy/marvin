@@ -5,7 +5,7 @@
 Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-
+    marvinEye = new eye(this,this);
     //создаем сервер. первый параметр стандартный - parent, второй - передадим ссылку на объект виджета, для подключения сигналов от trillianBody к нему
     _serv = new marvinBody(this, this);
     _serv->setDia(this);

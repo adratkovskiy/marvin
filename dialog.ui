@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>549</width>
-    <height>320</height>
+    <height>325</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -64,7 +64,7 @@
      <item>
       <widget class="QLineEdit" name="leHost">
        <property name="text">
-        <string>127.0.0.1</string>
+        <string>192.168.31.101</string>
        </property>
       </widget>
      </item>

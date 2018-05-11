@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>549</width>
-    <height>325</height>
+    <height>371</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -119,6 +119,24 @@
       <widget class="QPlainTextEdit" name="pteMessage">
        <property name="plainText">
         <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="btnOn">
+       <property name="text">
+        <string>On</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnOff">
+       <property name="text">
+        <string>Off</string>
        </property>
       </widget>
      </item>

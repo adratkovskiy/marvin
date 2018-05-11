@@ -6,6 +6,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
 {
     ui->setupUi(this);
     marvinEye = new eye(this,this);
+    hand = new marvinHand(this, this);
     //создаем сервер. первый параметр стандартный - parent, второй - передадим ссылку на объект виджета, для подключения сигналов от trillianBody к нему
     _serv = new marvinBody(this, this);
     _serv->setDia(this);
@@ -59,12 +60,42 @@ void Dialog::onRemoveUserFromGui(QString name)
 
 void Dialog::onMessageToGui(QString message, QString from, const QStringList &users)
 {
-    if (users.isEmpty())
-        ui->lwLog->insertItem(0, QTime::currentTime().toString()+" message from "+from+": "+message+" to all");
-    else
-    {
-        ui->lwLog->insertItem(0, QTime::currentTime().toString()+" message from "+from+": "+message+" to "+users.join(","));
-        ui->lwLog->item(0)->setTextColor(Qt::blue);
+    if (message.startsWith("cmd#")) {
+        setCmd(message);
+    }
+    else {
+        if (users.isEmpty())
+            ui->lwLog->insertItem(0, QTime::currentTime().toString()+" message from "+from+": "+message+" to all");
+        else
+        {
+            ui->lwLog->insertItem(0, QTime::currentTime().toString()+" message from "+from+": "+message+" to "+users.join(","));
+            ui->lwLog->item(0)->setTextColor(Qt::blue);
+        }
+    }
+}
+
+
+void Dialog::setCmd(QString cmd)
+{
+    if (cmd.mid(4,2)=="on") {
+        hand->setOn(cmd.mid(6,2).toInt());
+    }
+    if (cmd.mid(4,2)=="of") {
+        hand->setOff(cmd.mid(6,2).toInt());
+    }
+    if (cmd.mid(4,2)=="bb") {
+        if (cmd.mid(6,1) == "1") {
+            hand->setOn(11);
+        }
+        if (cmd.mid(7,1) == "1") {
+            hand->setOff(11);
+        }
+        if (cmd.mid(8,1) == "1") {
+            hand->setOn(23);
+        }
+        if (cmd.mid(9,1) == "1") {
+            hand->setOff(23);
+        }
     }
 }
 
@@ -139,4 +170,16 @@ void Dialog::addToLog(QString text, QColor color)
 void Dialog::on_pbStartStop_clicked()
 {
 
+}
+
+void Dialog::on_btnOn_clicked()
+{
+    hand->setOn(11);
+    hand->setOn(23);
+}
+
+void Dialog::on_btnOff_clicked()
+{
+    hand->setOff(11);
+    hand->setOff(23);
 }

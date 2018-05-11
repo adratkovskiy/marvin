@@ -149,3 +149,4 @@ void marvinBody::onMessageFromGui(QString message, const QStringList &users)
     else
         doSendServerMessageToUsers(message, users);
 }
+

@@ -1,7 +1,12 @@
 #ifndef MARVINHAND_H
 #define MARVINHAND_H
 #include <QObject>
-#include "bcm2835.h"
+#ifdef Q_OS_WIN
+
+#else
+    #include "bcm2835.h"
+#endif
+
 #include "dialog.h"
 
 class marvinHand : public QObject

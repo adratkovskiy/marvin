@@ -15,20 +15,28 @@ TEMPLATE = app
 SOURCES += \
         main.cpp \
         dialog.cpp \
-    marvinbody.cpp \
-    trillianbody.cpp \
-    eye.cpp \
-    marvinhand.cpp
+        marvinbody.cpp \
+        trillianbody.cpp \
+        eye.cpp
 
 HEADERS += \
         dialog.h \
-    marvinbody.h \
-    trillianbody.h \
-    eye.h \
-    marvinhand.h
+        marvinbody.h \
+        trillianbody.h \
+        eye.h
 
 FORMS += \
         dialog.ui
 
+unix {
+SOURCES += \
+    marvinhand.cpp
+
+HEADERS += \
+    marvinhand.h
+
 INCLUDEPATH += /usr/include /usr/local/include
 LIBS += -L/usr/local/lib -lbcm2835
+}
+
+

@@ -6,7 +6,11 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
 {
     ui->setupUi(this);
     marvinEye = new eye(this,this);
+#ifdef Q_OS_WIN
+
+#else
     hand = new marvinHand(this, this);
+#endif
     //создаем сервер. первый параметр стандартный - parent, второй - передадим ссылку на объект виджета, для подключения сигналов от trillianBody к нему
     _serv = new marvinBody(this, this);
     _serv->setDia(this);
@@ -15,7 +19,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
     connect(_serv, SIGNAL(addLogToGui(QString,QColor)), this, SLOT(onAddLogToGui(QString,QColor)));
 
     //по умолчанию запускаем сервер на 127.0.0.1:1234
-    if (_serv->doStartServer(QHostAddress::LocalHost, 1234))
+    if (_serv->doStartServer(QHostAddress::Any, 1234))
     {
         ui->lwLog->insertItem(0, QTime::currentTime().toString()+" server strated at "+_serv->serverAddress().toString()+":"+QString::number(_serv->serverPort()));
         ui->lwLog->item(0)->setTextColor(Qt::green);
@@ -77,6 +81,9 @@ void Dialog::onMessageToGui(QString message, QString from, const QStringList &us
 
 void Dialog::setCmd(QString cmd)
 {
+#ifdef Q_OS_WIN
+
+#else
     if (cmd.mid(4,2)=="on") {
         hand->setOn(cmd.mid(6,2).toInt());
     }
@@ -97,6 +104,8 @@ void Dialog::setCmd(QString cmd)
             hand->setOff(23);
         }
     }
+#endif
+
 }
 
 void Dialog::onAddLogToGui(QString string, QColor color)
@@ -174,12 +183,20 @@ void Dialog::on_pbStartStop_clicked()
 
 void Dialog::on_btnOn_clicked()
 {
+#ifdef Q_OS_WIN
+
+#else
     hand->setOn(11);
     hand->setOn(23);
+#endif
 }
 
 void Dialog::on_btnOff_clicked()
 {
+#ifdef Q_OS_WIN
+
+#else
     hand->setOff(11);
     hand->setOff(23);
+#endif
 }

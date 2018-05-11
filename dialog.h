@@ -7,7 +7,12 @@
 #include <QtCore>
 #include "marvinbody.h"
 #include "eye.h"
-#include "marvinhand.h"
+#ifdef Q_OS_WIN
+
+#else
+    #include "marvinhand.h"
+#endif
+#include <QUdpSocket>
 
 namespace Ui {
     class Dialog;
@@ -31,6 +36,7 @@ private:
     eye *marvinEye;
     marvinHand *hand;
     void addToLog(QString text, QColor color);
+    QUdpSocket *udpSock;
 
 signals:
     void messageFromGui(QString message, const QStringList &users);

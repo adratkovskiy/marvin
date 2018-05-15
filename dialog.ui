@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>549</width>
-    <height>371</height>
+    <height>376</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -141,6 +141,19 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblJoyState">
+     <property name="font">
+      <font>
+       <family>Droid Sans Mono</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Joy</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

@@ -12,7 +12,7 @@
 #else
     #include "marvinhand.h"
 #endif
-#include <QUdpSocket>
+#include "udp.h"
 
 namespace Ui {
     class Dialog;
@@ -20,6 +20,7 @@ namespace Ui {
 
 class eye;
 class marvinHand;
+class udp;
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -29,6 +30,7 @@ public:
     ~Dialog();
     void logMe(QString toLog);
     void setCmd(QString cmd);
+    void joyState(QString cmd);
 
 private:
     Ui::Dialog *ui;
@@ -36,7 +38,7 @@ private:
     eye *marvinEye;
     marvinHand *hand;
     void addToLog(QString text, QColor color);
-    QUdpSocket *udpSock;
+    udp *udpSock;
 
 signals:
     void messageFromGui(QString message, const QStringList &users);

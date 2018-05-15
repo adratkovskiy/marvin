@@ -30,6 +30,8 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
         ui->lwLog->item(0)->setTextColor(Qt::red);
         ui->pbStartStop->setChecked(true);
     }
+    //udp
+    udpSock = new udp(this, this, 1236);
 }
 
 void Dialog::logMe(QString toLog)
@@ -41,6 +43,11 @@ void Dialog::logMe(QString toLog)
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+void Dialog::joyState(QString cmd)
+{
+    ui->lblJoyState->setText(cmd);
 }
 
 void Dialog::onAddUserToGui(QString name)
@@ -84,27 +91,13 @@ void Dialog::setCmd(QString cmd)
 #ifdef Q_OS_WIN
 
 #else
-    if (cmd.mid(4,2)=="on") {
-        hand->setOn(cmd.mid(6,2).toInt());
-    }
-    if (cmd.mid(4,2)=="of") {
-        hand->setOff(cmd.mid(6,2).toInt());
-    }
-    if (cmd.mid(4,2)=="bb") {
-        if (cmd.mid(6,1) == "1") {
-            hand->setOn(11);
-        }
-        if (cmd.mid(7,1) == "1") {
-            hand->setOff(11);
-        }
-        if (cmd.mid(8,1) == "1") {
-            hand->setOn(23);
-        }
-        if (cmd.mid(9,1) == "1") {
-            hand->setOff(23);
-        }
+    if (cmd.mid(4,2) == "js") {
+        hand->ioStatus(cmd.mid(6));
     }
 #endif
+    if (cmd.mid(4,2) == "js") {
+        ui->lblJoyState->setText(cmd.mid(6));
+    }
 
 }
 

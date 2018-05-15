@@ -17,6 +17,7 @@ public:
     ~marvinHand();
     void setOn(int numBCM);
     void setOff(int numBCM);
+    void ioStatus(QString status);
 
 public slots:
 
@@ -24,6 +25,7 @@ private:
     Dialog *ui;
     bool status11 = false;
     bool status23 = false;
+    bool statusIO[40];
 };
 
 #endif // MARVINHAND_H

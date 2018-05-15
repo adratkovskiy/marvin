@@ -17,13 +17,15 @@ SOURCES += \
         dialog.cpp \
         marvinbody.cpp \
         trillianbody.cpp \
-        eye.cpp
+        eye.cpp \
+    udp.cpp
 
 HEADERS += \
         dialog.h \
         marvinbody.h \
         trillianbody.h \
-        eye.h
+        eye.h \
+    udp.h
 
 FORMS += \
         dialog.ui

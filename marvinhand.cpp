@@ -16,6 +16,11 @@ marvinHand::~marvinHand()
     bcm2835_close();
 }
 
+void marvinHand::ioStatus(QString status)
+{
+
+}
+
 void marvinHand::setOn(int numBCM)
 {
     switch (numBCM) {

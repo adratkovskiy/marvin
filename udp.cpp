@@ -5,7 +5,7 @@ udp::udp(QObject *parent, Dialog *dia, int _port) : QObject(parent)
     ui = dia;
     udpPort = _port;
     socket = new QUdpSocket(this);
-    socket->bind(QHostAddress::LocalHost, udpPort);
+    socket->bind(QHostAddress::Any, udpPort);
     ui->logMe("start udp port:" + QString::number(udpPort));
     connect(socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 }

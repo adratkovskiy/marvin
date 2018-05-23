@@ -12,9 +12,9 @@ udp::udp(QObject *parent, Dialog *dia, int _port) : QObject(parent)
 
 void udp::sendMess(QString mess)
 {
-    QByteArray Data;
+    /*QByteArray Data;
     Data.append(mess);
-    socket->writeDatagram(Data, QHostAddress::LocalHost, udpPort - 1);
+    socket->writeDatagram(Data, QHostAddress::LocalHost, udpPort+1);*/
 }
 
 void udp::readyRead()
@@ -25,7 +25,7 @@ void udp::readyRead()
     quint16 senderPort;
     QHostAddress *address = new QHostAddress();
     socket->readDatagram(buffer.data(), buffer.size(), address);
-    ui->logMe("mess");
+    ui->logMe("mess: " + buffer);
     ui->setCmd(buffer);
     delete(address);
 }

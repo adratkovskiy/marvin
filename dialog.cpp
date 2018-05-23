@@ -91,8 +91,11 @@ void Dialog::setCmd(QString cmd)
 #ifdef Q_OS_WIN
 
 #else
-    if (cmd.mid(4,2) == "js") {
-        hand->ioStatus(cmd.mid(6));
+    if (cmd.mid(0,3) == "cmd") {
+        if (cmd.mid(4,2) == "js") {
+            hand->joyStatus(cmd.mid(6));
+            //hand->ioStatus(cmd.mid(6));
+        }
     }
 #endif
     if (cmd.mid(4,2) == "js") {

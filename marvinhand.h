@@ -17,7 +17,8 @@ public:
     ~marvinHand();
     void setOn(int numBCM);
     void setOff(int numBCM);
-    void ioStatus(QString status);
+    void ioStatus(int joyState[20]);
+    void joyStatus(QString status);
 
 public slots:
 

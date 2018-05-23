@@ -45,7 +45,7 @@ Dialog::~Dialog()
     delete ui;
 }
 
-void Dialog::joyState(QString cmd)
+void Dialog::viewJoyState(QString cmd)
 {
     ui->lblJoyState->setText(cmd);
 }
@@ -98,10 +98,6 @@ void Dialog::setCmd(QString cmd)
         }
     }
 #endif
-    if (cmd.mid(4,2) == "js") {
-        ui->lblJoyState->setText(cmd.mid(6));
-    }
-
 }
 
 void Dialog::onAddLogToGui(QString string, QColor color)

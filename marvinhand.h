@@ -24,8 +24,6 @@ public slots:
 
 private:
     Dialog *ui;
-    bool status11 = false;
-    bool status23 = false;
     bool statusIO[40];
 };
 

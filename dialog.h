@@ -30,7 +30,7 @@ public:
     ~Dialog();
     void logMe(QString toLog);
     void setCmd(QString cmd);
-    void joyState(QString cmd);
+    void viewJoyState(QString cmd);
 
 private:
     Ui::Dialog *ui;

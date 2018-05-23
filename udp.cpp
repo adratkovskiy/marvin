@@ -25,7 +25,7 @@ void udp::readyRead()
     quint16 senderPort;
     QHostAddress *address = new QHostAddress();
     socket->readDatagram(buffer.data(), buffer.size(), address);
-    ui->logMe("mess: " + buffer);
+    //ui->logMe("mess: " + buffer);
     ui->setCmd(buffer);
     delete(address);
 }

@@ -10,10 +10,21 @@ marvinHand::marvinHand(QObject *parent, Dialog *dia)
     bcm2835_gpio_fsel(RPI_GPIO_P1_11, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_fsel(RPI_GPIO_P1_13, BCM2835_GPIO_FSEL_OUTP);
     bcm2835_gpio_fsel(RPI_GPIO_P1_15, BCM2835_GPIO_FSEL_OUTP);
+    bcm2835_gpio_write(RPI_GPIO_P1_11, LOW);
+    bcm2835_gpio_write(RPI_GPIO_P1_13, LOW);
+    bcm2835_gpio_write(RPI_GPIO_P1_15, LOW);
+
+    for (int i = 0; i < 20; i++ )
+    {
+        statusIO[i] = false;
+    }
 }
 
 marvinHand::~marvinHand()
 {
+    bcm2835_gpio_write(RPI_GPIO_P1_11, LOW);
+    bcm2835_gpio_write(RPI_GPIO_P1_13, LOW);
+    bcm2835_gpio_write(RPI_GPIO_P1_15, LOW);
     bcm2835_close();
 }
 
@@ -22,22 +33,28 @@ void marvinHand::joyStatus(QString status)
     int iter = 0;
     bool space = false;
     int joyState[20];
-    for (int i = 0; status.length() < i; i++)
+    int icount;
+    QString statusView = "|";
+    for (int i = 0; i < status.size(); i++)
     {
         if (space == true) {
             space = false;
         }
         else {
             if (status.mid(i, 1) == "-") {
-                joyState[iter] = QString::toInt("-" + status.mid((i + 1), 1));
+                QString tmpStr = "-" + status.mid((i + 1), 1);
+                joyState[iter] = tmpStr.toInt();
                 space = true;
             }
             else {
-                joyState[iter] = status.mid(i, 1);
+                joyState[iter] = status.mid(i, 1).toInt();
             }
+            statusView.append(QString::number(joyState[iter]));
             iter++;
         }
+        icount = i;
     }
+    ui->viewJoyState(status + statusView);
     ioStatus(joyState);
 }
 
@@ -66,7 +83,7 @@ void marvinHand::ioStatus(int joyState[20])
 void marvinHand::setOn(int numBCM)
 {
     if (statusIO[numBCM] == false) {
-        ui->logMe("set on RPI_GPIO_P1_" + QString::number(numBCM));
+        ui->logMe("try set ON p_" + QString::number(numBCM));
         switch (numBCM) {
         case 11:
             bcm2835_gpio_write(RPI_GPIO_P1_11, HIGH);
@@ -90,7 +107,7 @@ void marvinHand::setOn(int numBCM)
 void marvinHand::setOff(int numBCM)
 {
     if (statusIO[numBCM] == true) {
-        ui->logMe("set on RPI_GPIO_P1_" + QString::number(numBCM));
+        ui->logMe("try set OFF p_" + QString::number(numBCM));
         switch (numBCM) {
         case 11:
             bcm2835_gpio_write(RPI_GPIO_P1_11, LOW);

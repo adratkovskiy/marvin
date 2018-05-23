@@ -14,7 +14,7 @@ void udp::sendMess(QString mess)
 {
     QByteArray Data;
     Data.append(mess);
-    socket->writeDatagram(Data, QHostAddress::LocalHost, udpPort - 1);
+    socket->writeDatagram(Data, QHostAddress::LocalHost, udpPort + 1);
 }
 
 void udp::readyRead()

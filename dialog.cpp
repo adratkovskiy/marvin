@@ -31,7 +31,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
         ui->pbStartStop->setChecked(true);
     }
     //udp
-    udpSock = new udp(this, this, 1236);
+    udpSock = new udp(this, this, 1235);
 }
 
 void Dialog::logMe(QString toLog)

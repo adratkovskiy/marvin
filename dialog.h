@@ -7,6 +7,7 @@
 #include <QtCore>
 #include "marvinbody.h"
 #include "eye.h"
+
 #ifdef Q_OS_WIN
 
 #else

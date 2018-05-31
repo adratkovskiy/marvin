@@ -5,11 +5,12 @@
 Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    logMe("we start");
     marvinEye = new eye(this,this);
 #ifdef Q_OS_WIN
 
 #else
-    hand = new marvinHand(this, this);
+    //hand = new marvinHand(this, this);
 #endif
     //создаем сервер. первый параметр стандартный - parent, второй - передадим ссылку на объект виджета, для подключения сигналов от trillianBody к нему
     _serv = new marvinBody(this, this);
@@ -32,6 +33,8 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
     }
     //udp
     udpSock = new udp(this, this, 1201);
+    //pca
+    pca = new tPCA(this, this);
 }
 
 void Dialog::logMe(QString toLog)

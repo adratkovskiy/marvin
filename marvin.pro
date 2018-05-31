@@ -18,14 +18,18 @@ SOURCES += \
         marvinbody.cpp \
         trillianbody.cpp \
         eye.cpp \
-    udp.cpp
+        udp.cpp \
+        src/pca9685.c \
+    tpca.cpp
 
 HEADERS += \
         dialog.h \
         marvinbody.h \
         trillianbody.h \
         eye.h \
-    udp.h
+        udp.h \
+        src/pca9685.h \
+    tpca.h
 
 FORMS += \
         dialog.ui
@@ -37,8 +41,9 @@ SOURCES += \
 HEADERS += \
     marvinhand.h
 
+
 INCLUDEPATH += /usr/include /usr/local/include
-LIBS += -L/usr/local/lib -lbcm2835
+LIBS += -L/usr/local/lib -lbcm2835 -lwiringPi
 }
 
 

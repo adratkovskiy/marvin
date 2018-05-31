@@ -7,6 +7,8 @@
 #include <QtCore>
 #include "marvinbody.h"
 #include "eye.h"
+#include "tpca.h"
+
 
 #ifdef Q_OS_WIN
 
@@ -19,9 +21,11 @@ namespace Ui {
     class Dialog;
 }
 
-class eye;
 class marvinHand;
+class wire;
+class eye;
 class udp;
+class tPCA;
 class Dialog : public QDialog
 {
     Q_OBJECT
@@ -40,6 +44,7 @@ private:
     marvinHand *hand;
     void addToLog(QString text, QColor color);
     udp *udpSock;
+    tPCA *pca;
 
 signals:
     void messageFromGui(QString message, const QStringList &users);

@@ -4,7 +4,10 @@
 #ifdef Q_OS_WIN
 
 #else
-    #include "bcm2835.h"
+    //#include "bcm2835.h"
+    #include <wiringPi.h>
+    #include <softServo.h>
+    #include <errno.h>
 #endif
 
 #include "dialog.h"
@@ -24,7 +27,8 @@ public slots:
 
 private:
     Dialog *ui;
-    bool statusIO[40];
+    //bool statusIO[40];
+    QVector <bool> statusIO;
 };
 
 #endif // MARVINHAND_H

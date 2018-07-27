@@ -29,6 +29,7 @@ private:
     Dialog *ui;
     //bool statusIO[40];
     QVector <bool> statusIO;
+    void moveAngle(int ang, int joy);
 };
 
 #endif // MARVINHAND_H

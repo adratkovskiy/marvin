@@ -36,6 +36,7 @@ public:
     void logMe(QString toLog);
     void setCmd(QString cmd);
     void viewJoyState(QString cmd);
+    void move(float mil, int joy);
 
 private:
     Ui::Dialog *ui;

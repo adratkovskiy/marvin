@@ -41,9 +41,8 @@ void marvinHand::joyStatus(QString status)
 {
     int iter = 0;
     bool space = false;
-    int joyState[20];
-    int icount;
-    QString statusView = "|";
+    int joyState[24];
+    QString statusView = "";
     for (int i = 0; i < status.size(); i++)
     {
         if (space == true) {
@@ -61,10 +60,28 @@ void marvinHand::joyStatus(QString status)
             statusView.append(QString::number(joyState[iter]));
             iter++;
         }
-        icount = i;
     }
-    //ui->viewJoyState(status + statusView);
-    ioStatus(joyState);
+    QString tmpStr;
+    for (int b = 0; b < iter; b++) {
+        tmpStr.append(QString::number(joyState[b]));
+        tmpStr.append('|');
+    }
+    //ui->logMe("2");
+    ui->viewJoyState(tmpStr);
+    moveAngle(joyState[1], 4);
+    moveAngle(joyState[0], 1);
+    //ui->logMe(joyState);
+    //ioStatus(joyState);
+}
+
+void marvinHand::moveAngle(int ang, int joy)
+{
+    int base = 544;
+    int mod = 103;
+    int angle = base - mod + (mod * (ang +10));
+    float angle_float = angle / 1000.0;
+    //ui->logMe(QString::number(angle / 1000));
+    ui->move(angle_float, joy);
 }
 
 void marvinHand::ioStatus(int joyState[20])

@@ -27,7 +27,7 @@ tPCA::tPCA(QObject *parent, Dialog *dia) : QObject(parent)
     qDebug() << "mullis:" << millis << " tick:" << tick;
     delay(2000);
 
-    int active = 0;
+    /*int active = 0;
     while (active < 10)
     {
         // That's a hack. We need a random number < 1
@@ -44,7 +44,7 @@ tPCA::tPCA(QObject *parent, Dialog *dia) : QObject(parent)
         active++;
     }
 
-    tick = calcTicks(1.5, HERTZ);
+    tick = calcTicks(1.5, HERTZ);*/
     qDebug() << "mullis default:" << millis << " tick:" << tick;
     pwmWrite(PIN_BASE + pinNum, tick);
 
@@ -59,13 +59,13 @@ tPCA::tPCA(QObject *parent, Dialog *dia) : QObject(parent)
 
 }
 
-void tPCA::move(float mil)
+void tPCA::move(float mil, int joy)
 {
-    int pinNum = 4;
+    //int pinNum = 4;
     int tick = calcTicks(mil, HERTZ);
-    pwmWrite(PIN_BASE + pinNum, tick);
+    pwmWrite(PIN_BASE + joy, tick);
     qDebug() << "millis:" << mil << " tick:" << tick;
-    delay(500);
+    delay(20);
 }
 
 int tPCA::calcTicks(float impulseMs, int hertz)

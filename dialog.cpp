@@ -7,10 +7,11 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
     ui->setupUi(this);
     logMe("we start");
     marvinEye = new eye(this,this);
+
 #ifdef Q_OS_WIN
 
 #else
-    //hand = new marvinHand(this, this);
+    hand = new marvinHand(this, this);
 #endif
     //создаем сервер. первый параметр стандартный - parent, второй - передадим ссылку на объект виджета, для подключения сигналов от trillianBody к нему
     _serv = new marvinBody(this, this);
@@ -39,6 +40,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent), ui(new Ui::Dialog)
 
 void Dialog::logMe(QString toLog)
 {
+    //ui->lwLog->addItem(toLog);
     ui->lwLog->insertItem(0, toLog);
     ui->lwLog->item(0)->setTextColor(Qt::blue);
 }
@@ -51,6 +53,10 @@ Dialog::~Dialog()
 void Dialog::viewJoyState(QString cmd)
 {
     ui->lblJoyState->setText(cmd);
+}
+
+void Dialog::move(float mil, int joy) {
+    pca->move(mil, joy);
 }
 
 void Dialog::onAddUserToGui(QString name)

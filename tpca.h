@@ -20,6 +20,7 @@ public:
     explicit tPCA(QObject *parent = nullptr, Dialog *dia = nullptr);
     int calcTicks(float impulseMs, int hertz);
     float map(float input, float min, float max);
+    void move(float mil);
 private:
     Dialog *ui;
 };

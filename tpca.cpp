@@ -21,27 +21,51 @@ tPCA::tPCA(QObject *parent, Dialog *dia) : QObject(parent)
     // Set servo to neutral position at 1.5 milliseconds
     // (View http://en.wikipedia.org/wiki/Servo_control#Pulse_duration)
     float millis = 1.5;
+    int pinNum = 16;
     int tick = calcTicks(millis, HERTZ);
-    pwmWrite(PIN_BASE + 16, tick);
+    pwmWrite(PIN_BASE + pinNum, tick);
+    qDebug() << "mullis:" << millis << " tick:" << tick;
     delay(2000);
 
-
-    int active = 1;
-    while (active < 5)
+    int active = 0;
+    while (active < 10)
     {
         // That's a hack. We need a random number < 1
-        qDebug() << active;
         float r = rand();
         while (r > 1)
             r /= 10;
 
         millis = map(r, 1, 2);
         tick = calcTicks(millis, HERTZ);
+        qDebug() << "mullis:" << millis << " tick:" << tick;
+        pwmWrite(PIN_BASE + pinNum, tick);
 
-        pwmWrite(PIN_BASE + 16, tick);
-        delay(1000);
+        delay(500);
         active++;
     }
+
+    tick = calcTicks(1.5, HERTZ);
+    qDebug() << "mullis default:" << millis << " tick:" << tick;
+    pwmWrite(PIN_BASE + pinNum, tick);
+
+    /*move(1.5);
+    qDebug() << "default";
+    delay(1000);
+    float angle_move = 0.1;
+    for (angle_move = 1.1; angle_move < 3; angle_move += 0.1)
+    {
+        move(angle_move);
+    }*/
+
+}
+
+void tPCA::move(float mil)
+{
+    int pinNum = 4;
+    int tick = calcTicks(mil, HERTZ);
+    pwmWrite(PIN_BASE + pinNum, tick);
+    qDebug() << "millis:" << mil << " tick:" << tick;
+    delay(500);
 }
 
 int tPCA::calcTicks(float impulseMs, int hertz)

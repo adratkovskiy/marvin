@@ -223,7 +223,6 @@ static void myPwmWrite(struct wiringPiNodeStruct *node, int pin, int value)
 {
 	int fd   = node->fd;
 	int ipin = pin - node->pinBase;
-
 	if (value >= 4096)
 		pca9685FullOn(fd, ipin, 1);
 	else if (value > 0)

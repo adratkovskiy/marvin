@@ -69,7 +69,7 @@ void marvinHand::joyStatus(QString status)
     //ui->logMe("2");
     ui->viewJoyState(tmpStr);
     moveAngle(joyState[1], 4);
-    moveAngle(joyState[0], 1);
+    moveAngle(joyState[0], 0);
     //ui->logMe(joyState);
     //ioStatus(joyState);
 }
